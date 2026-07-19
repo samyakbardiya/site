@@ -13,5 +13,13 @@
   },
   "dependencies": {
     "astro": "^7.1.1"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "nub",
+      "version": "^0.4.13",
+      "onFail": "warn"
+    }
   }
 }
+
