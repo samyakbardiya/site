@@ -1,25 +1,18 @@
 @import "tailwindcss";
 @import "@catppuccin/tailwindcss/mocha.css";
 
-/* Semantic color aliases — mapped to Catppuccin tokens.
-   The plugin auto-switches between mocha (dark) and latte (light)
-   when .mocha / .latte is on <html>. */
-@theme {
-    --color-bg: var(--ctp-base);
-    --color-text: var(--ctp-text);
-    --color-sub: var(--ctp-subtext0);
-    --color-comment: var(--ctp-overlay1);
-    --color-border: var(--ctp-overlay0);
-    --color-div: var(--ctp-surface1);
-    --color-glow: var(--glow);
-
-    --font-mono: "Input Mono", ui-monospace, Menlo, monospace;
-
-    --animate-boot: boot 0.01s forwards;
+@font-face {
+    font-family: "Monaspace Argon";
+    src: url("/fonts/Monaspace-Argon-Var.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
 
-:root {
-    --glow: color-mix(in srgb, var(--ctp-mauve) 35%, transparent);
+@theme {
+    --font-mono: "Monaspace Argon", input-mono, monospace;
+
+    --animate-boot: boot 0.01s forwards;
 }
 
 @keyframes boot {
