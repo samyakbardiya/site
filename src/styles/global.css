@@ -1,70 +1,25 @@
 @import "tailwindcss";
+@import "@catppuccin/tailwindcss/mocha.css";
 
-/* Palette swatches are built with dynamic `bg-<color>` names the scanner
-   can't see literally, so keep them generated. */
-@source inline("bg-{red,peach,yellow,green,teal,blue,mauve,pink}");
-
-/* Catppuccin palette, swapped at runtime via [data-theme] on <html>.
-   Tailwind color tokens below point at these vars, so utilities like
-   `text-mauve` or `bg-bg` react to the theme toggle automatically. */
-:root[data-theme="mocha"] {
-    --ctp-bg: #11111b;
-    --ctp-border: #1e1e2e;
-    --ctp-text: #cdd6f4;
-    --ctp-comment: #6c7086;
-    --ctp-sub: #a6adc8;
-    --ctp-div: #45475a;
-    --ctp-yellow: #f9e2af;
-    --ctp-green: #a6e3a1;
-    --ctp-sky: #89dceb;
-    --ctp-blue: #89b4fa;
-    --ctp-mauve: #cba6f7;
-    --ctp-red: #f38ba8;
-    --ctp-peach: #fab387;
-    --ctp-teal: #94e2d5;
-    --ctp-pink: #f5c2e7;
-    --glow: rgba(203, 166, 247, 0.35);
-}
-
-:root[data-theme="latte"] {
-    --ctp-bg: #eff1f5;
-    --ctp-border: #ccd0da;
-    --ctp-text: #4c4f69;
-    --ctp-comment: #9ca0b0;
-    --ctp-sub: #6c6f85;
-    --ctp-div: #bcc0cc;
-    --ctp-yellow: #df8e1d;
-    --ctp-green: #40a02b;
-    --ctp-sky: #04a5e5;
-    --ctp-blue: #1e66f5;
-    --ctp-mauve: #8839ef;
-    --ctp-red: #d20f39;
-    --ctp-peach: #fe640b;
-    --ctp-teal: #179299;
-    --ctp-pink: #ea76cb;
-    --glow: rgba(136, 57, 239, 0.25);
-}
-
+/* Semantic color aliases — mapped to Catppuccin tokens.
+   The plugin auto-switches between mocha (dark) and latte (light)
+   when .mocha / .latte is on <html>. */
 @theme {
+    --color-bg: var(--ctp-base);
+    --color-text: var(--ctp-text);
+    --color-sub: var(--ctp-subtext0);
+    --color-comment: var(--ctp-overlay1);
+    --color-border: var(--ctp-overlay0);
+    --color-div: var(--ctp-surface1);
+    --color-glow: var(--glow);
+
     --font-mono: "Input Mono", ui-monospace, Menlo, monospace;
 
-    --color-bg: var(--ctp-bg);
-    --color-border: var(--ctp-border);
-    --color-text: var(--ctp-text);
-    --color-comment: var(--ctp-comment);
-    --color-sub: var(--ctp-sub);
-    --color-div: var(--ctp-div);
-    --color-yellow: var(--ctp-yellow);
-    --color-green: var(--ctp-green);
-    --color-sky: var(--ctp-sky);
-    --color-blue: var(--ctp-blue);
-    --color-mauve: var(--ctp-mauve);
-    --color-red: var(--ctp-red);
-    --color-peach: var(--ctp-peach);
-    --color-teal: var(--ctp-teal);
-    --color-pink: var(--ctp-pink);
-
     --animate-boot: boot 0.01s forwards;
+}
+
+:root {
+    --glow: color-mix(in srgb, var(--ctp-mauve) 35%, transparent);
 }
 
 @keyframes boot {
