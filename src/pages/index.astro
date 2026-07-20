@@ -151,12 +151,14 @@ const alink = "text-ctp-blue hover:text-ctp-mauve hover:underline break-words";
             (function () {
                 try {
                     const t = localStorage.getItem("sb-theme");
-                    if (t) {
+                    if ("mocho" === t || "latte" === t) {
                         document.documentElement.setAttribute("data-theme", t);
-                        document.documentElement.classList.toggle("mocha", t === "mocha");
-                        document.documentElement.classList.toggle("latte", t === "latte");
+                        document.documentElement.classList.toggle("mocha", "mocha" === t);
+                        document.documentElement.classList.toggle("latte", "latte" === t);
                     }
-                } catch (e) {}
+                } catch {
+                    // localStorage unavailable — fall back to default them
+                }
             })();
         </script>
     </head>
@@ -326,7 +328,12 @@ const alink = "text-ctp-blue hover:text-ctp-mauve hover:underline break-words";
                                 <span class="hidden text-ctp-green sm:inline">.rw-r--r--</span>
                                 <span class="hidden text-ctp-overlay1 sm:inline">{c.date}</span>
                                 <c.Icon class={`${c.iconCls} text-xs sm:text-sm`} />
-                                <a href={c.href} class={alink}>
+                                <a
+                                    href={c.href}
+                                    class={alink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     {c.label}
                                 </a>
                             </div>
@@ -368,15 +375,19 @@ const alink = "text-ctp-blue hover:text-ctp-mauve hover:underline break-words";
             (function () {
                 const btn = document.getElementById("theme-toggle");
                 const root = document.documentElement;
-                btn.addEventListener("click", function () {
-                    const next = root.getAttribute("data-theme") === "mocha" ? "latte" : "mocha";
-                    root.setAttribute("data-theme", next);
-                    root.classList.toggle("mocha", next === "mocha");
-                    root.classList.toggle("latte", next === "latte");
-                    try {
-                        localStorage.setItem("sb-theme", next);
-                    } catch (e) {}
-                });
+                if (btn)
+                    btn.addEventListener("click", function () {
+                        const next =
+                            root.getAttribute("data-theme") === "mocha" ? "latte" : "mocha";
+                        root.setAttribute("data-theme", next);
+                        root.classList.toggle("mocha", next === "mocha");
+                        root.classList.toggle("latte", next === "latte");
+                        try {
+                            localStorage.setItem("sb-theme", next);
+                        } catch {
+                            // localStorage unavailable — fall back to default them
+                        }
+                    });
             })();
         </script>
     </body>
