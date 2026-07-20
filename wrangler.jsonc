@@ -2,8 +2,14 @@
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "site",
     "compatibility_date": "2026-07-20",
+    "compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
+    "main": "@astrojs/cloudflare/entrypoints/server",
     "assets": {
         "directory": "./dist",
+        "binding": "ASSETS",
         "not_found_handling": "404-page",
+    },
+    "observability": {
+        "enabled": true,
     },
 }
