@@ -3,11 +3,13 @@ dist/
 
 # generated types
 .astro/
+worker-configuration.d.ts
 
 # dependencies
 node_modules/
 
 # lockfiles
+bun.lock
 nub.lock
 package-lock.json
 pnpm-lock.yaml

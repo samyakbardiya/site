@@ -1,7 +1,7 @@
-import tailwindcss from "@tailwindcss/vite";
 import cloudflare from "@astrojs/cloudflare";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import icon from "astro-icon";
+import Icons from "unplugin-icons/vite";
 
 /**
  * @see https://astro.build/config
@@ -10,9 +10,7 @@ import icon from "astro-icon";
 export default defineConfig({
     site: "https://samyakbardiya.dev",
     adapter: cloudflare(),
-    integrations: [icon()],
     vite: {
-        plugins: [tailwindcss()],
+        plugins: [Icons({ compiler: "astro" }), tailwindcss()],
     },
 });
-
