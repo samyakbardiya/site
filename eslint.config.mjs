@@ -1,9 +1,9 @@
 import js from "@eslint/js";
-import { defineConfig } from "eslint/config";
-import ts from "typescript-eslint";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 import eslintPluginAstro from "eslint-plugin-astro";
 import jsxA11y from "eslint-plugin-jsx-a11y";
-import eslintConfigPrettier from "eslint-config-prettier/flat";
+import { defineConfig } from "eslint/config";
+import ts from "typescript-eslint";
 
 /**
  * @type {import('eslint').Linter.Config}

@@ -1,6 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
 import "../styles/global.css";
+import IconGithubAlt from "~icons/fa6-brands/github-alt";
+import IconLinkedinIn from "~icons/fa6-brands/linkedin-in";
+import IconXTwitter from "~icons/fa6-brands/x-twitter";
+import IconEnvelope from "~icons/fa6-solid/envelope";
+import IconMoon from "~icons/fa6-solid/moon";
+import IconSun from "~icons/fa6-solid/sun";
+import IconStar from "~icons/fa6-solid/star";
 
 // Pixel slashed-zero glyph — two-tone: 1 = text color, 2 = red.
 const zero = [
@@ -36,7 +42,8 @@ const projects = [
     {
         name: "trex/",
         repo: "https://github.com/samyakbardiya/trex",
-        desc: "Go TUI for real-time RegEx · 2nd prize, FOSS Hack 2025 · <span class='inline-flex items-center gap-1 text-ctp-yellow'><i class='fa-solid fa-star text-xs sm:text-sm relative -top-px'></i>120+</span>",
+        desc: "Go TUI for real-time RegEx · 2nd prize, FOSS Hack 2025 · ",
+        stars: "120+",
     },
     {
         name: "dotfiles/",
@@ -68,28 +75,28 @@ const prs = [
 
 const contacts = [
     {
-        icon: "fa6-solid:envelope",
+        Icon: IconEnvelope,
         iconCls: "text-ctp-peach",
         label: "mail@samyakbardiya.dev",
         href: "mailto:mail@samyakbardiya.dev",
         date: "2024-01-14",
     },
     {
-        icon: "fa6-brands:github-alt",
+        Icon: IconGithubAlt,
         iconCls: "text-ctp-mauve",
         label: "github.com/samyakbardiya",
         href: "https://github.com/samyakbardiya",
         date: "2016-11-09",
     },
     {
-        icon: "fa6-brands:x-twitter",
+        Icon: IconXTwitter,
         iconCls: "text-ctp-lavender",
         label: "x.com/samyakbardiya",
         href: "https://x.com/samyakbardiya",
         date: "2014-08-16",
     },
     {
-        icon: "fa6-brands:linkedin-in",
+        Icon: IconLinkedinIn,
         iconCls: "text-ctp-sapphire",
         label: "linkedin.com/in/samyakbardiya",
         href: "https://linkedin.com/in/samyakbardiya",
@@ -169,8 +176,8 @@ const alink = "text-ctp-blue hover:text-ctp-mauve hover:underline break-words";
                         aria-label="Toggle color theme"
                         class="cursor-pointer border-0 bg-transparent p-0 text-sm text-ctp-overlay1 select-none hover:text-ctp-text sm:text-base"
                     >
-                        <Icon name="fa6-solid:moon" class="theme-icon-moon" />
-                        <Icon name="fa6-solid:sun" class="theme-icon-sun" />
+                        <IconMoon class="theme-icon-moon" />
+                        <IconSun class="theme-icon-sun" />
                     </button>
                 </div>
                 <div class="animate-boot opacity-0 [animation-delay:0.4s]">
@@ -244,7 +251,15 @@ const alink = "text-ctp-blue hover:text-ctp-mauve hover:underline break-words";
                                 <a href={p.repo} class={link} target="_blank" rel="noopener">
                                     {p.name}
                                 </a>
-                                <span class="block text-ctp-subtext0 sm:inline" set:html={p.desc} />
+                                <span class="block text-ctp-subtext0 sm:inline">
+                                    {p.desc}
+                                    {p.stars && (
+                                        <span class="inline-flex items-center gap-2 text-ctp-yellow">
+                                            <IconStar class="text-xs sm:text-sm" />
+                                            {p.stars}
+                                        </span>
+                                    )}
+                                </span>
                             </div>
                         ))
                     }
@@ -305,7 +320,7 @@ const alink = "text-ctp-blue hover:text-ctp-mauve hover:underline break-words";
                             <div class="contents">
                                 <span class="hidden text-ctp-green sm:inline">.rw-r--r--</span>
                                 <span class="hidden text-ctp-overlay1 sm:inline">{c.date}</span>
-                                <Icon name={c.icon} class={c.iconCls} />
+                                <c.Icon class={`${c.iconCls} text-xs sm:text-sm`} />
                                 <a href={c.href} class={alink}>
                                     {c.label}
                                 </a>
